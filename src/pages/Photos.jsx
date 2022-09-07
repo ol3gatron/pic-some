@@ -7,7 +7,11 @@ function Photos() {
   const {images} = useContext(PicsomeContext)
   const imagesElements = images.map((image, index) => {
     return (
-      <Image key={image.id} image={image} className={getClass(index)}/>
+      <Image
+        key={image.id}
+        image={image}
+        className={getClass(index)}
+      />
     )
   })
 

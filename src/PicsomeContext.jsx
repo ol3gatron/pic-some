@@ -28,12 +28,11 @@ function PicsomeContextProvider({children}) {
   }
 
   function removeFromCart(imageObj) {
-    const newArray = cartItems.filter(item => item.id !== imageObj.id)
-    setCartItems(prevState => ([...newArray]))
+    setCartItems(prevState => prevState.filter(item => item.id !== imageObj.id))
   }
 
   return (
-    <PicsomeContext.Provider value={{images, toggleFavorite, addToCart, cartItems, removeFromCart}}>
+    <PicsomeContext.Provider value={{images, toggleFavorite, cartItems, addToCart, removeFromCart}}>
       {children}
     </PicsomeContext.Provider>
   )

@@ -5,12 +5,26 @@ import { PicsomeContext } from "../PicsomeContext"
 function Image({className, image}) {
   const [isHovered, setIsHovered] = useState(false)
 
-  const {toggleFavorite, addToCart} = useContext(PicsomeContext)
+  const {toggleFavorite, cartItems, addToCart} = useContext(PicsomeContext)
 
-  const heartIcon = isHovered &&
-  <i className="ri-heart-line favorite" onClick={() => toggleFavorite(image.id)}></i>
-  const heartIconFavorite = image.isFavorite && <i className="ri-heart-fill favorite" onClick={() => toggleFavorite(image.id)}></i>
-  const cartIcon = isHovered && <i className="ri-add-circle-line cart" onClick={() => addToCart(image)}></i>
+  function heartIcon() {
+    if (image.isFavorite) {
+        return <i className="ri-heart-fill favorite" onClick={() => toggleFavorite(image.id)}></i>
+    } else if (isHovered) {
+        return <i className="ri-heart-line favorite" onClick={() => toggleFavorite(image.id)}></i>
+    }
+  }
+
+  function cartIcon() {
+    if (cartItems.find(item => item.id == image.id)) {
+      return <i className="ri-shopping-cart-fill cart"></i>
+    } else if (isHovered) {
+      return <i
+      className="ri-add-circle-line cart" onClick={() => addToCart(image)}
+    ></i>
+    }
+  }
+
 
 
   return (
@@ -20,9 +34,8 @@ function Image({className, image}) {
         onMouseLeave={() => setIsHovered(false)}
       >
 
-      {heartIcon}
-      {heartIconFavorite}
-      {cartIcon}
+      {heartIcon()}
+      {cartIcon()}
 
       <img src={image.url} className="image-grid"/>
       </div>

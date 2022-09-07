@@ -28,7 +28,7 @@ function PicsomeContextProvider({children}) {
   }
 
   return (
-    <PicsomeContext.Provider value={{images, toggleFavorite, addToCart}}>
+    <PicsomeContext.Provider value={{images, toggleFavorite, addToCart, cartItems}}>
       {children}
     </PicsomeContext.Provider>
   )

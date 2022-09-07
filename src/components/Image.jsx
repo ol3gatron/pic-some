@@ -5,7 +5,7 @@ import { PicsomeContext } from "../PicsomeContext"
 function Image({className, image}) {
   const [isHovered, setIsHovered] = useState(false)
 
-  const {toggleFavorite, cartItems, addToCart} = useContext(PicsomeContext)
+  const {toggleFavorite, cartItems, addToCart, removeFromCart} = useContext(PicsomeContext)
 
   function heartIcon() {
     if (image.isFavorite) {
@@ -17,7 +17,7 @@ function Image({className, image}) {
 
   function cartIcon() {
     if (cartItems.find(item => item.id == image.id)) {
-      return <i className="ri-shopping-cart-fill cart"></i>
+      return <i className="ri-shopping-cart-fill cart" onClick={() => removeFromCart(image)}></i>
     } else if (isHovered) {
       return <i
       className="ri-add-circle-line cart" onClick={() => addToCart(image)}

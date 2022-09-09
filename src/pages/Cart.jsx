@@ -26,16 +26,14 @@ function Cart() {
     }, 3000)
   }
 
-  const button = <button onClick={handleClick}>{isOrdering ? "Ordering..." : "Place Order"}</button>
+  const button = <div className="order-button"><button onClick={handleClick}>{isOrdering ? "Ordering..." : "Place Order"}</button></div>
 
   return (
     <main className="cart-page">
       <h1>Check out</h1>
       {cartItemElements}
       <p className="total-cost">Total: {totalCost()}</p>
-      <div className="order-button">
-        {cartItems.length > 0 && button}
-      </div>
+      {cartItems.length > 0 ? button : "You hane no items in your cart."}
     </main>
   )
 }

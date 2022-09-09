@@ -31,6 +31,10 @@ function PicsomeContextProvider({children}) {
     setCartItems(prevState => prevState.filter(item => item.id !== imageObj.id))
   }
 
+  function emptyCart() {
+    setCartItems([])
+  }
+
   return (
     <PicsomeContext.Provider value={{
       images,
@@ -38,6 +42,7 @@ function PicsomeContextProvider({children}) {
       toggleFavorite,
       addToCart,
       removeFromCart,
+      emptyCart,
       }}>
       {children}
     </PicsomeContext.Provider>

@@ -1,9 +1,10 @@
 import { useContext, useState } from "react"
 import PropTypes from 'prop-types'
 import { PicsomeContext } from "../PicsomeContext"
+import useHover from "../hooks/useHover"
 
 function Image({className, image}) {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, itemRef] = useHover()
 
   const {toggleFavorite, cartItems, addToCart, removeFromCart} = useContext(PicsomeContext)
 
@@ -30,8 +31,7 @@ function Image({className, image}) {
   return (
       <div
         className={`${className} image-container`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        ref={itemRef}
       >
 
       {heartIcon()}

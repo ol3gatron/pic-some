@@ -29,7 +29,6 @@ function PicsomeContextProvider({children}) {
 
   function removeFromCart(imageObj) {
     setCartItems(prevState => prevState.filter(item => item.id !== imageObj.id))
-    console.log(cartItems)
   }
 
   return (
